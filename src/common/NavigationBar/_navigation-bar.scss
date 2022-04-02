@@ -1,0 +1,70 @@
+@import '../../constants/styles/sizes';
+@import '../../constants/styles/colors';
+
+.navigation-bar {
+    padding: $padding-xl;
+    &__logo-wrapper {
+        display: flex;
+        align-items: center;
+    }
+    &__icon {
+        color: $col-special;
+        font-size: $font-size-l;
+        margin-left: $margin-l;
+    }
+    &__stanko {
+        color: $col-special;
+        font-size: $font-size-l;
+        margin-left: $margin-l;
+        font-weight: bold;
+    }
+    &__options > button {
+        text-transform: lowercase;
+        font-size: $font-size-m;
+        margin-right: $margin-l;
+        border: 0px;
+    }
+    &__options > button:hover {
+        background-color: $col-green;
+    }
+    &__options > button::after{
+        background-color: $col-special;
+    }
+
+    &__hover-animation {
+        display: inline-block;
+        position: relative;
+    }
+    &__hover-animation:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: $col-special;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+      }
+    &__hover-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    }
+    &__menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        &__icon {
+            color: $col-special;
+            font-size: $font-size-l;
+        }
+        &__popover {
+            background-color: $col-dark;
+            &__item {
+                border-bottom: $col-green;
+            }
+        }
+    }
+}
