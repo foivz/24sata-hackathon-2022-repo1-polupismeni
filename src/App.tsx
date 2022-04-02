@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-
+import { BrowserRouter, Route, Switch, Redirect  } from 'react-router-dom';
 
 import Homepage from './pages/Homepage';
 import Login from 'pages/Login';
@@ -31,27 +29,35 @@ require('firebase/auth');
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
 	console.log(loggedIn, 'loggedIn');
-	const history = createBrowserHistory();
 	console.log(loggedIn)
 	useEffect(() => {
 		setLoggedIn(!!firebaseAuth.currentUser);
 	}, [])
 	firebaseAuth.onAuthStateChanged((user) => {
 		setLoggedIn(!!firebaseAuth.currentUser);
-		if (firebaseAuth.currentUser !== null) {
-			history.push('/');
-		}
 	});
 
 
 	return (
 		<BrowserRouter>
 			{loggedIn && <NavigationBar />}
-			<Routes>
-				<Route path='/' element={loggedIn ? <Homepage ></Homepage> : <Login history={history} />}>
-				{!loggedIn && <Route path='/prijava' element={<Login history={history} />}></Route>}
+			<Switch>
+				{loggedIn &&
+					<Route path='/' >
+						<Homepage></Homepage>
+					</Route>
+				}
+				{!loggedIn &&
+				<Route exact path="/">
+					<Redirect to="login"></Redirect>
 				</Route>
-			</Routes>
+				}
+				{!loggedIn && (
+					<Route exact path="/login">
+						<Login />
+					</Route>
+				)}
+			</Switch>
 		</BrowserRouter>
 	);
 }

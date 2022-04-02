@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Grid, Button, ButtonGroup, Popover, Paper, MenuItem, MenuList } from '@material-ui/core';
 import { HiOfficeBuilding } from 'react-icons/hi';
 import {  GiHamburgerMenu, GiPieChart } from 'react-icons/gi';
+import { useHistory } from "react-router-dom";
+
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
@@ -33,7 +35,7 @@ const NavigationBar = () => {
     function handleLogOut() {
         firebase.auth().signOut()
             .then(function() {
-                
+                window.location.assign("/login");
   })
     }
 
@@ -72,7 +74,9 @@ const NavigationBar = () => {
                              <Paper >
                                 <MenuList className="navigation-bar__menu__popover">
                                     <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='/'>Spendings</MenuItem>
-                                    <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='prijava' onClick={handleLogOut}>Log out</MenuItem>
+                                    <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='/savings'>Savings</MenuItem>
+                                    <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='/savings'>Learn</MenuItem>
+                                    <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='/login' onClick={handleLogOut}>Log out</MenuItem>
                                 </MenuList>
                             </Paper>
                         </Popover>
@@ -80,7 +84,9 @@ const NavigationBar = () => {
                     :
                     <ButtonGroup variant="outlined" aria-label="text button group" className="navigation-bar__options">
                         <Button className='navigation-bar__hover-animation' style={{'color': '#4E9F3D'}} component={Link} to='/' >Spendings</Button>
-                        <Button className='navigation-bar__hover-animation' style={{'color': '#4E9F3D'}}  component={Link} to='/prijava' onClick={handleLogOut}>Log out</Button>
+                        <Button style={{'color': '#4E9F3D'}} className='navigation-bar__hover-animation' component={Link} to='/savings'>Savings</Button>
+                        <Button style={{'color': '#4E9F3D'}} className='navigation-bar__hover-animation' component={Link} to='/savings'>Learn</Button>
+                        <Button className='navigation-bar__hover-animation' style={{'color': '#4E9F3D'}}  component={Link} to='/login' onClick={handleLogOut}>Log out</Button>
                     </ButtonGroup>
                 }
             </Grid>

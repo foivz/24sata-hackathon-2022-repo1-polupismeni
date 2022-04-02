@@ -8,20 +8,14 @@ import { GrGoogle, GrFacebook } from 'react-icons/gr';
 
 import './_login.scss'
 import { firebaseAuth } from '../../firebase';
-import { BrowserHistory } from 'history';
 
-interface Props {
-    history: BrowserHistory | undefined;
-}
 // const auth = firebase.auth();
 
-const Login = (props: Props) => {
-    const { history } = props;
+const Login = () => {
  
     const signInWithGoogle = () => {
 		const provider = new firebase.auth.GoogleAuthProvider();
 		firebaseAuth.signInWithPopup(provider).then((user) => {
-            console.log('tu', history)
 
         });
 	}
