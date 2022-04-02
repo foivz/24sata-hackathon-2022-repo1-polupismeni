@@ -14,7 +14,6 @@ import DeleteItemIcon from '@material-ui/icons/Delete';
 import UpdateItemIcon from '@material-ui/icons/Update';
 import { v4 as uuidv4 } from 'uuid';
 
-
 const CategoriesList = () => {
   const docs = initialList.documents;  //this coming from a json file, please see below for the sample json
 
@@ -126,6 +125,7 @@ const CategoriesList = () => {
     </Collapse>
     <Divider />
     </div>
+    
     )
 }
 
