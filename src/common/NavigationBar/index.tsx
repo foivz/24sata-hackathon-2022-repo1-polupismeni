@@ -71,7 +71,7 @@ const NavigationBar = () => {
                         >
                              <Paper >
                                 <MenuList className="navigation-bar__menu__popover">
-                                    <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='/'>Expenses</MenuItem>
+                                    <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='/'>Spendings</MenuItem>
                                     <MenuItem style={{'color': '#4E9F3D'}} component={Link} to='prijava' onClick={handleLogOut}>Log out</MenuItem>
                                 </MenuList>
                             </Paper>
@@ -79,7 +79,7 @@ const NavigationBar = () => {
                     </div>
                     :
                     <ButtonGroup variant="outlined" aria-label="text button group" className="navigation-bar__options">
-                        <Button className='navigation-bar__hover-animation' style={{'color': '#4E9F3D'}} component={Link} to='/' >Expenses</Button>
+                        <Button className='navigation-bar__hover-animation' style={{'color': '#4E9F3D'}} component={Link} to='/' >Spendings</Button>
                         <Button className='navigation-bar__hover-animation' style={{'color': '#4E9F3D'}}  component={Link} to='/prijava' onClick={handleLogOut}>Log out</Button>
                     </ButtonGroup>
                 }

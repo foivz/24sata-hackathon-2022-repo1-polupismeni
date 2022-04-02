@@ -2,11 +2,25 @@ import React from 'react';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { CartesianGrid, Cell, Legend, Line, LineChart, Pie, PieChart, Tooltip, XAxis, YAxis } from 'recharts';
-import { Grid } from '@material-ui/core';
+import { BsPlusLg } from 'react-icons/bs'
+import { AiFillRobot } from 'react-icons/ai'
+import { Grid, TextField } from '@material-ui/core';
+import DateFnsUtils from '@date-io/date-fns';
+
 import { firebaseAuth } from '../../firebase';
+import { SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import { DatePicker, DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+
+
 
 // import { firestore } from '../../firebase';
-
+const actions = [{
+	name: 'Add expense',
+	icon: <BsPlusLg />
+}, {
+	name: 'ChatBot',
+	icon: <AiFillRobot />
+}]
 const dataPie = [
 	{ name: 'Group A', value: 400 },
 	{ name: 'Group B', value: 300 },
@@ -60,6 +74,8 @@ const renderCustomizedLabel = (props: any) => {
 
 const Homepage = () => {
 	console.log('u homepageu')
+	const [value, setValue] = React.useState<Date | null>(new Date());
+
 	// const articlesRef = firestore.collection('articles');
 	//  const a = articlesRef.orderBy('title').limit(5).get().then((snapShot) => snapShot.docs.forEach((s) => console.log(s.data())));
 	function handleChartClick(e: any) {
@@ -70,12 +86,22 @@ const Homepage = () => {
 	return (
 		<div className='homepage'>
 			<Grid container>
-				<Grid style={{ 'padding': '12px', 'color': 'white', 'fontSize': '28px', 'marginLeft': '10vh' }} item xs={12}>
-					<span>{`Hello, ${firebaseAuth.currentUser?.displayName}`} </span>
+				<Grid style={{ 'padding': '12px', 'color': 'white', 'fontSize': '22px', 'marginLeft': '10vh' }} item xs={12}>
+					<span>{`Hello, ${firebaseAuth.currentUser?.displayName}, here are your expenses`} </span>
+					<MuiPickersUtilsProvider utils={DateFnsUtils}>
+						<DateTimePicker
+							label="DateTimePicker"
+							inputVariant="outlined"
+							views={['year', 'month']}
+							value={new Date()}
+							onChange={(value) => setValue(value)}
+
+						/>
+					</MuiPickersUtilsProvider>
 				</Grid>
 			</Grid>
 			<Grid container>
-				<Grid item xs={6}>
+				<Grid item xs={6} alignItems={'center'}>
 					<PieChart width={400} height={400}>
 						<Pie
 							data={dataPie}
@@ -91,7 +117,7 @@ const Homepage = () => {
 						</Pie>
 					</PieChart>
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={6} alignItems='center'>
 					<LineChart
 						width={500}
 						height={300}
@@ -119,7 +145,19 @@ const Homepage = () => {
 					</LineChart>
 				</Grid>
 			</Grid>
-
+			<SpeedDial
+					ariaLabel="SpeedDial basic example"
+					sx={{ position: 'absolute', bottom: 64, right: 64 }}
+					icon={<SpeedDialIcon />}
+					>
+					{actions.map((action) => (
+						<SpeedDialAction
+						key={action.name}
+						icon={action.icon}
+						tooltipTitle={action.name}
+						/>
+					))}
+					</SpeedDial>
 		</div>
 	);
 };
