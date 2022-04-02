@@ -4,7 +4,9 @@ import { createBrowserHistory } from 'history';
 
 
 import Homepage from './pages/Homepage';
-import Login from 'pages/Login';
+import Login from './pages/Login';
+import Stock from './pages/StocksAndCrypto';
+
 import './_app.scss';
 // import { firebaseAuth, firestore } from './firebase';
 import firebase from 'firebase/compat/app';
@@ -14,7 +16,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import FirebaseApp, { firebaseAuth } from './firebase'
 
-import NavigationBar from 'common/NavigationBar/index';
+import NavigationBar from './common/NavigationBar/index';
 
 require('firebase/auth');
 
@@ -48,9 +50,15 @@ function App() {
 		<BrowserRouter>
 			{loggedIn && <NavigationBar />}
 			<Routes>
-				<Route path='/' element={loggedIn ? <Homepage ></Homepage> : <Login history={history} />}>
-				{!loggedIn && <Route path='/prijava' element={<Login history={history} />}></Route>}
+				
+				<Route path='/' element={loggedIn ? 
+				<Homepage ></Homepage> 
+				: <Login history={history} />}>
+				{!loggedIn && <Route path='/prijava' element={<Login history={history} />}>
+					</Route>}
 				</Route>
+				<Route path="/stonks" element={<Stock></Stock >}></Route>
+
 			</Routes>
 		</BrowserRouter>
 	);

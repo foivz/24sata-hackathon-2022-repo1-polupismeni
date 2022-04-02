@@ -36,22 +36,26 @@ const dataLine = [
 	},
 	{
 	  name: '7.-14.',
+	  estSpent: 800,
 	  spent: 800,
 	  amt: 2210,
 	},
 	{
 	  name: '14.-21.',
-	  spent: 900,
+	  estSpent: 900,
+
 	  amt: 2290,
 	},
 	{
 	  name: '21.-28.',
-	  spent: 1500,
+	  estSpent: 1500,
+
 	  amt: 2000,
 	},
 	{
 	  name: '28.-31.',
-	  spent: 2000,
+	  estSpent: 2000,
+
 	  amt: 2181,
 	},
   ];
@@ -132,7 +136,7 @@ const Homepage = () => {
 						<CartesianGrid strokeDasharray="3 3" />
 						<linearGradient id="gradient" x1="0" y1="0" x2="100%" y2="0">
 							<stop offset="0%" stopColor="red" />
-							<stop offset={`25%`} stopColor="red" />
+							<stop offset={`25%`} stopColor="blue" />
 							<stop offset={`75%`} stopColor="blue" />
 							<stop offset="100%" stopColor="blue" />
        					 </linearGradient>
@@ -140,8 +144,8 @@ const Homepage = () => {
 						<YAxis />
 						<Tooltip />
 						<Legend />
-						<Line type="monotone" dataKey="spent" stroke="#82ca9d" />
-						<Line type="monotone" dataKey="estSpent" stroke="#82ca9d" />
+						<Line type="monotone" dataKey="spent" stroke="red" />
+						<Line type="monotone" dataKey="estSpent" stroke="blue" />
 					</LineChart>
 				</Grid>
 			</Grid>
