@@ -37,7 +37,16 @@ function App() {
 	useEffect(() => {
 		setLoggedIn(!!firebaseAuth.currentUser);
 	}, [])
+	let authFlag = true;
 	firebaseAuth.onAuthStateChanged((user) => {
+		if (authFlag) {
+			authFlag = false;
+			if (user) {
+				setLoggedIn(true);
+			} else {
+				setLoggedIn(false);
+			}
+		}
 		setLoggedIn(!!firebaseAuth.currentUser);
 	});
 
@@ -47,7 +56,7 @@ function App() {
 			{loggedIn && <NavigationBar />}
 			<Switch>
 				{loggedIn &&
-					<Route path='/' >
+					<Route exact path='/' >
 						<Homepage></Homepage>
 					</Route>
 				}
@@ -62,7 +71,7 @@ function App() {
 					</Route>
 				)}
 				{loggedIn &&
-					<Route path='/stonks' >
+					<Route exact path='/stonks' >
 						<Stock></Stock>
 					</Route>
 				}
