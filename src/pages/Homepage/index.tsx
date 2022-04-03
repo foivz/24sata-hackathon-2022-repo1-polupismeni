@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { CartesianGrid, Cell, Legend, Line, LineChart, Pie, PieChart, Tooltip, XAxis, YAxis } from 'recharts';
-import { BsPlusLg } from 'react-icons/bs'
+import { BsFillCalculatorFill, BsPlusLg } from 'react-icons/bs'
 import { AiFillRobot, AiOutlineClose } from 'react-icons/ai'
 import { MdLocalGroceryStore, MdOutlineAirplanemodeActive, MdCelebration } from 'react-icons/md';
 import { FaBed } from 'react-icons/fa'
@@ -201,6 +201,17 @@ const Homepage = () => {
 	}, {
 		name: 'ChatBot',
 		icon: <AiFillRobot />
+	}, {
+		name: 'Bruto-Neto Calculator',
+		icon: <BsFillCalculatorFill />
+	},
+	{
+		name: 'Inflation Calculator',
+		icon: <BsFillCalculatorFill />
+	},
+	{
+		name: 'Credit Calculator',
+		icon: <BsFillCalculatorFill />
 	}]
 
 	useEffect(() => {
