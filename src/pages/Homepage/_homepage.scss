@@ -1,0 +1,61 @@
+@import '../../constants/styles/colors';
+@import '../../constants/styles/sizes';
+
+.homepage {
+    &__date-picker {
+        color: white;
+        .react-date-picker__wrapper {
+            border: 1px solid $col-dark;
+            border-bottom: 1px solid white;
+            margin-left: 8px;
+            .react-date-picker__inputGroup {
+                > input {
+                    color: white;
+                }
+            }
+        }
+    }
+    &__switch {
+        .MuiSwitch-track {
+            background-color: red;
+        }
+    }
+    &__modal-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__expense-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        &:nth-child(2) {
+            background-color: red;
+        }
+    }
+    &__expense {
+        background-color: #F3E9DD;
+        width: 80%;
+        border: 1px solid black;
+        border-radius: 8px;
+        padding: 4px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        &__amount {
+            float: right;
+            margin-right: 36px;
+            font-weight: bolder;
+        }
+    }
+    &__or {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 48px;
+    }
+    &__upload {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
