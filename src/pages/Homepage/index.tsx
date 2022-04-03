@@ -14,7 +14,6 @@ import DatePicker from 'react-date-picker';
 import { MonthPicker } from '@mui/lab';
 import shoppingImage from '../Homepage/shopping.svg';
 
-
 import { firebaseAuth } from '../../firebase';
 import { Autocomplete, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
@@ -172,6 +171,7 @@ function getIconFromExpenseType(type: any) {
 const Homepage = () => {
 
 	const [value, setValue] = useState<Date | null>(new Date());
+	const [openReminderModal, setOpenReminderModal] = useState(false);
 	const [openAddExpenseModal, setOpenAddExpenseModal] = useState(false);
 	const [currentSection, setCurrentSection] = useState(null);
 	const [currentExpenses, setCurrentExpenses] = useState<any>([]);
@@ -184,6 +184,8 @@ const Homepage = () => {
 	function handleClick(e: any) {
 		e.preventDefault();
 		setOpenAddExpenseModal(true);// to close the speed dial, remove this line if not needed.
+		setOpenReminderModal(true);// to close the speed dial, remove this line if not needed.
+
 	};
 
 	function resizeHandler() {
@@ -213,7 +215,8 @@ const Homepage = () => {
 	},
 	{
 		name: 'Reminder',
-		icon: <AiOutlineBulb />
+		icon: <AiOutlineBulb />,
+		action: () => setOpenReminderModal(true),
 	}]
 
 	useEffect(() => {
@@ -489,6 +492,36 @@ const Homepage = () => {
 					</Grid>
 				</Grid>
 			</Dialog>
+			<Dialog
+				open={openReminderModal}
+				onClose={() => setOpenReminderModal(false)}
+				maxWidth='sm'
+			>
+				<Grid container style={{ 'height': '40vh', 'padding': '16px' }}>
+					<Grid item xs={12}>
+					<TextField
+									
+									label="Name of reminder"
+									
+								/>
+						<br/>
+						<span>Date to remind: </span>
+							<DatePicker
+								onChange={setValue}
+								value={value}
+								maxDetail={'month'}
+								clearIcon={<IoMdClose color='white' />}
+								calendarIcon={<IoMdCalendar color='white' />}
+								className='homepage__date-picker'
+								defaultValue={new Date()}
+							/>
+						
+					</Grid>	
+														
+
+				</Grid>
+			</Dialog>
+
 		</div>
 	);
 };
