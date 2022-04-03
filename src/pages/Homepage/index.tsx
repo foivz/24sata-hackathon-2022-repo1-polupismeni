@@ -3,7 +3,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { CartesianGrid, Cell, Legend, Line, LineChart, Pie, PieChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { BsFillCalculatorFill, BsPlusLg } from 'react-icons/bs'
-import { AiFillRobot, AiOutlineClose } from 'react-icons/ai'
+import { AiFillRobot, AiOutlineBulb } from 'react-icons/ai'
 import { MdLocalGroceryStore, MdOutlineAirplanemodeActive, MdCelebration } from 'react-icons/md';
 import { FaBed } from 'react-icons/fa'
 import { IoMdClose, IoMdCalendar } from 'react-icons/io'
@@ -198,10 +198,8 @@ const Homepage = () => {
 		name: 'Add expense',
 		icon: <BsPlusLg />,
 		action: () => setOpenAddExpenseModal(true),
-	}, {
-		name: 'ChatBot',
-		icon: <AiFillRobot />
-	}, {
+	}, 
+	{
 		name: 'Bruto-Neto Calculator',
 		icon: <BsFillCalculatorFill />
 	},
@@ -212,6 +210,10 @@ const Homepage = () => {
 	{
 		name: 'Credit Calculator',
 		icon: <BsFillCalculatorFill />
+	},
+	{
+		name: 'Reminder',
+		icon: <AiOutlineBulb />
 	}]
 
 	useEffect(() => {
