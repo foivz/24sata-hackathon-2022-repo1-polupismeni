@@ -55,11 +55,6 @@ function App() {
 		<BrowserRouter>
 			{loggedIn && <NavigationBar />}
 			<Switch>
-				{loggedIn &&
-					<Route exact path='/' >
-						<Homepage></Homepage>
-					</Route>
-				}
 				{!loggedIn &&
 				<Route exact path="/">
 					<Redirect to="login"></Redirect>
@@ -73,6 +68,11 @@ function App() {
 				{loggedIn &&
 					<Route exact path='/stonks' >
 						<Stock></Stock>
+					</Route>
+				}
+					{loggedIn &&
+					<Route path='/' >
+						<Homepage></Homepage>
 					</Route>
 				}
 			</Switch>
